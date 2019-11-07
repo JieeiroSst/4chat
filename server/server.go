@@ -70,7 +70,7 @@ func removeConn(conn net.Conn) {
 func publicMsg(conn net.Conn, msg string) {
 	for i := range conns {
 		if conns[i] != conn {
-			conns[i].Write([]byte(msg))
+			_, _ = conns[i].Write([]byte(msg))
 		}
 	}
 }
