@@ -19,23 +19,9 @@ var (
 
 func MyAccount(a Account) {
 	fmt.Println("Name user")
-	fmt.Scanln(&a.UserName)
+	_, _ = fmt.Scanln(&a.UserName)
 	fmt.Println("Password")
-	fmt.Scanln(&a.Password)
-}
-
-func Accecpt() {
-	var status string
-
-	fmt.Println("can you speack statusd")
-	fmt.Println("yes/no")
-	fmt.Scan(&status)
-	switch status {
-	case "yes":
-	case "no":
-		break
-		return
-	}
+	_, _ = fmt.Scanln(&a.Password)
 }
 func onMessage(conn net.Conn) {
 	for {
@@ -57,7 +43,7 @@ func publicMessage(conn net.Conn) {
 
 		for i := range conns {
 			if conns[i] != conn {
-				conns[i].Write([]byte(msg))
+				_, _ = conns[i].Write([]byte(msg))
 			}
 		}
 	}
@@ -70,18 +56,9 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	MyAccount(a)
-	Accecpt()
-	nameReader := bufio.NewReader(os.Stdin)
-	nameInput, _ := nameReader.ReadString('\n')
-
-	nameInput = nameInput[:len(nameInput)-1]
-
 	fmt.Println("********** MESSAGES **********")
-
 	go onMessage(connection)
-
 	for {
 		msgReader := bufio.NewReader(os.Stdin)
 		msg, err := msgReader.ReadString('\n')
@@ -92,10 +69,10 @@ func main() {
 
 		msg = fmt.Sprintf("%s-->%s\n", a.UserName, msg)
 
-		connection.Write([]byte(msg))
+		_, _ = connection.Write([]byte(msg))
 
 		go publicMessage(connection)
 	}
 
-	connection.Close()
+	_ = connection.Close()
 }
