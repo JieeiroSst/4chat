@@ -6,18 +6,15 @@ import (
 	"log"
 	"net"
 	"os"
+	"4chat/controller"
 )
 
-type Account struct {
-	UserName string
-	Password string
-}
 
 var (
 	conns []net.Conn
 )
 
-func MyAccount(a Account) {
+func MyAccount(a controller.Account) {
 	fmt.Println("Name user")
 	_, _ = fmt.Scanln(&a.UserName)
 	fmt.Println("Password")
@@ -50,7 +47,7 @@ func publicMessage(conn net.Conn) {
 }
 
 func main() {
-	var a Account
+	var a controller.Account
 
 	connection, err := net.Dial("tcp", "localhost:4000")
 	if err != nil {
