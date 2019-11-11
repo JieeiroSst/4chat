@@ -2,6 +2,7 @@ package main
 
 import (
 	"4chat/db"
+	"4chat/controller"
 	"bufio"
 	"fmt"
 	"log"
@@ -15,13 +16,11 @@ var (
 	msgch   = make(chan string)
 )
 
-type Account struct {
-	UserName string
-	Password string
-}
 
-func manager(a Account) {
+var Accounts []controller.Account
 
+func manager(a controller.Account) {
+	account = db.GetList()
 }
 
 func main() {
