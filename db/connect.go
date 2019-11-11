@@ -3,7 +3,7 @@ package db
 import (
 	"database/sql"
 	"log"
-
+	"4chat/controller"
 	_ "github.com/go-sql-driver/mysql"
 )
 
@@ -16,7 +16,10 @@ var (
 	MyUrl     = "localhost"
 )
 
-var db *sql.DB
+var(
+	db *sql.DB
+	accocunts []controller.Account
+)
 
 func HandleDataBase() {
 	db, err := sql.Open(NameDB, MysqlUser+":"+MysqlPass+"@("+MyUrl+":"+MyPort+")/"+MysqlDB)
@@ -32,8 +35,21 @@ func HandleDataBase() {
 	log.Println("connected to mysql database")
 }
 
+func GetList() []controller.Account{
+	var account controller.Account
+	result,err:=db.Query("SELECT* from `Account`")
+	if err!=nil{
+		log.Fatal(err)
+	}
+	defer result.Close()
+
+	accocunts=append(accocunts,account)
+
+	return accocunts
+}
+
 func SelectUser(id string) {
-	result, err := db.Query("SELECT UserName,Password from Account where id=?", id)
+	var result, err = db.Query("SELECT UserName,Password from `Account` where id=?", id)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -65,12 +81,12 @@ type project struct {
 var projects []project
 
 func InsertUser(UserName string, Password string) {
-	stmt, err := db.Prepare("insert into Account(id,Username,Passowrd) values(?,?,?)")
+	stmt, err := db.Prepare("insert into `Account`(id,Username,Passowrd) values(?,?,?)")
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer stmt.Close()
-	//upppdate data
+	//uppdate data
 	var p project
 	p.UserName = UserName
 	p.Password = Password
@@ -80,4 +96,12 @@ func InsertUser(UserName string, Password string) {
 			log.Fatal(err)
 		}
 	}
+}
+
+func DeleteUser(id string ) {
+	result,err:=db.Query("delete from `Account` where id=?",id)
+	if err!=nil{
+		log.Fatal(err)
+	}
+	defer result.Close()
 }
