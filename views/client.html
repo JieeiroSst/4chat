@@ -1,86 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>4chat</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="../statics/stytle.css">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link href='https://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <meta name="robots" content="noindex">
-    <link rel="shortcut icon" type="image/x-icon" href="//production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />
-    <link rel="mask-icon" type="" href="//production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" />
-    <link rel="canonical" href="https://codepen.io/michellelpepe/pen/GoQyoJ?depth=everything&order=popularity&page=84&q=pack&show_forks=false" />
-    <script src='//production-assets.codepen.io/assets/editor/live/console_runner-079c09a0e3b9ff743e39ee2d5637b9216b3545af0de366d4b9aad9dc87e26bfd.js'></script>
-    <script src='//production-assets.codepen.io/assets/editor/live/events_runner-73716630c22bbc8cff4bd0f07b135f00a0bdc5d14629260c3ec49e5606f98fdd.js'></script>
-    <script src='//production-assets.codepen.io/assets/editor/live/css_live_reload_init-2c0dc5167d60a5af3ee189d570b1835129687ea2a61bee3513dee3a50c115a77.js'></script>
-</head>
-<body>
-
-</body>
-    <div class='container' ng-cloak ng-app="chatApp">
-        <h1>4chat Messenger App</h1>
-        <div class='chatbox' ng-controller="MessageCtrl as chatMessage">
-            <div class="chatbox__messages" ng-repeat="message in messages">
-                <div class="chatbox__messages__user-message">
-                    <div class="chatbox__messages__user-message--ind-message">
-                        <p class="name">{{message.Name}}</p>
-                        <br/>
-                        <p class="message">{{message.Message}}</p>
-                    </div>
-                </div>
+<html>
+    <head>
+        <title>4chat</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="../statics/stytle.css">
+    </head>
+    <body>
+    <section class="msger">
+        <header class="msger-header">
+            <div class="msger-header-title">
+                <i class="fas fa-comment-alt"></i> 4chat
             </div>
-            <div class='chatbox__user-list'>
-                <h1>Friends Online</h1>
-                <div class='chatbox__user--active'>
-                    <p>Maelyn Pepe</p>
-                </div>
-                <div class='chatbox__user--busy'>
-                    <p>Michelle Pepe</p>
-                </div>
-                <div class='chatbox__user--active'>
-                    <p>Amy Angular</p>
-                </div>
-                <div class='chatbox__user--active'>
-                    <p>Jack Uniden</p>
-                </div>
-                <div class='chatbox__user--away'>
-                    <p>Ben Marcus</p>
-                </div>
-
-                <form>
-                    <input type="text" placeholder="Type Message" style="mask: initial">
-                </form>
+            <div class="msger-header-options">
+                <span><i class="fas fa-cog"></i></span>
             </div>
-        </div>
-    </div>
-<script src="../statics/client.js"></script>
-<script >(function() {
-        var app = angular.module('chatApp', []);
+        </header>
 
-        app.controller('MessageCtrl', function($scope) {
-            $scope.messages = [{
-                Name: 'Ben Marcus',
-                Message: "Hi  : )"
-            }, {
-                Name: 'Michelle Pepe',
-                Message: "What's up?"
-            }, {
-                Name: 'Ben Marcus',
-                Message: "Nothing much, You?"
-            }];
-        });
+        <main class="msger-chat">
 
-    })();
-</script>
-<script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script>
+        </main>
+
+        <form class="msger-inputarea">
+            <input type="text" class="msger-input" placeholder="Enter your message...">
+            <button type="submit" class="msger-send-btn">Send</button>
+        </form>
+    </section>
+    <script src="../statics/client.js"></script>
+    </body>
 </html>
-
-
-
-
-
-
-
