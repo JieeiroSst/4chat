@@ -12,7 +12,7 @@ func main() {
 	r.HandleFunc("/login", controller.SendLogin)
 	r.HandleFunc("/4chat", controller.SendClient)
 
-	err := http.ListenAndServe(":4000", nil)
+	err := http.ListenAndServe(":4001", nil)
 	if err != nil {
 		log.Fatal(err)
 	}

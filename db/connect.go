@@ -17,7 +17,7 @@ var (
 )
 
 var (
-	db        *sql.DB
+	db        *sql.DB	
 	accocunts []controller.Account
 )
 

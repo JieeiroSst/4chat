@@ -13,12 +13,6 @@ var (
 	conns []net.Conn
 )
 
-func MyAccount(a controller.Account) {
-	fmt.Println("Name user")
-	_, _ = fmt.Scanln(&a.UserName)
-	fmt.Println("Password")
-	_, _ = fmt.Scanln(&a.Password)
-}
 
 func onMessage(conn net.Conn) {
 	for {
@@ -53,7 +47,10 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	MyAccount(a)
+	fmt.Println("Name user")
+	_, _ = fmt.Scanf("%s",&a.UserName)
+	fmt.Println("Password")
+	_, _ = fmt.Scanf("%s",&a.Password)
 	fmt.Println("********** MESSAGES **********")
 	go onMessage(connection)
 	for {
@@ -64,10 +61,10 @@ func main() {
 			break
 		}
 
-		msg = fmt.Sprintf("%s-->%s\n", a.UserName, msg)
+		msg = fmt.Sprintf("%v-->%s\n", a.UserName, msg)
 
 		_, _ = connection.Write([]byte(msg))
-
+		
 		go publicMessage(connection)
 	}
 

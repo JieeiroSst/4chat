@@ -1,6 +1,7 @@
 package main
 
 import (
+	"404Chat/DataEncrypt"
 	"404Chat/controller"
 	"404Chat/db"
 	"bufio"
@@ -30,7 +31,7 @@ func main() {
 	}
 	
 	go db.HandleDB()
-	
+	fmt.Println("Manage message")
 	go func() {
 		for {
 			conn, err := server.Accept()
@@ -48,7 +49,8 @@ func main() {
 		case conn := <-connch:
 			go onMessage(conn)
 		case msg := <-msgch:
-			go fmt.Print(msg)
+			msgs:=DataEncrypt.HashData(msg)
+			go fmt.Printf("%x\n",msgs)
 		case conn := <-closeCh:
 			fmt.Println("client exit")
 			removeConn(conn)
