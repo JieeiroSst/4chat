@@ -1,7 +1,7 @@
 package json
 
 import (
-	"4chat/controller"
+	"404Chat/controller"
 )
 
 var user controller.Account

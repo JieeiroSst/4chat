@@ -1,13 +1,13 @@
 package testing
 
 import (
-	"4chat/json"
+	"404Chat/json"
 	"testing"
 )
 
 func AccountMovieRead(b *testing.B) {
 	for n := 0; n < b.N; n++ {
-	 	json.ReadJson("../json/account.json", func(data map[string]interface{}) bool {
+		json.ReadJson("../json/account.json", func(data map[string]interface{}) bool {
 			return data["Account"].(float64) >= 2010
 		})
 	}
@@ -36,4 +36,3 @@ func BenchmarkQReadToken(b *testing.B) {
 		})
 	}
 }
-

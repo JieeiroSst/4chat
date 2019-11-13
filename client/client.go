@@ -1,14 +1,13 @@
 package main
 
 import (
+	"404Chat/controller"
 	"bufio"
 	"fmt"
 	"log"
 	"net"
 	"os"
-	"4chat/controller"
 )
-
 
 var (
 	conns []net.Conn
@@ -20,6 +19,7 @@ func MyAccount(a controller.Account) {
 	fmt.Println("Password")
 	_, _ = fmt.Scanln(&a.Password)
 }
+
 func onMessage(conn net.Conn) {
 	for {
 		reader := bufio.NewReader(conn)

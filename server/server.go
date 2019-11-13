@@ -1,8 +1,8 @@
 package main
 
 import (
-	"4chat/db"
-	"4chat/controller"
+	"404Chat/controller"
+	"404Chat/db"
 	"bufio"
 	"fmt"
 	"log"
@@ -20,7 +20,7 @@ var (
 var Accounts []controller.Account
 
 func manager(a controller.Account) {
-	account = db.GetList()
+	_ = db.GetList()
 }
 
 func main() {
@@ -28,21 +28,21 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	go db.HandleDataBase()
-
+	
+	go db.HandleDB()
+	
 	go func() {
 		for {
 			conn, err := server.Accept()
 			if err != nil {
 				log.Fatal(err)
 			}
-
+			
 			conns = append(conns, conn)
 			connch <- conn
 		}
 	}()
-
+	
 	for {
 		select {
 		case conn := <-connch:
@@ -84,6 +84,6 @@ func onMessage(conn net.Conn) {
 		msgch <- msg
 		publicMsg(conn, msg)
 	}
-
+	
 	closeCh <- conn
 }
